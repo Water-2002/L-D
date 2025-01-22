@@ -46,7 +46,7 @@ const createMetaObject = async (type, fields) => {
     mutation {
       metaobjectCreate(input: {
         type: "${type}",
-        fields: ${JSON.stringify(fields)}
+        fields: ${fields}
       }) {
         metaobject {
           id
