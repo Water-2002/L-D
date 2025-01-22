@@ -156,9 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
   sbBtn.addEventListener('click', async () => {
     let productId = sbBtn.getAttribute('product-id')
     let rs = await getMetafield(productId);
-    await fetchAllMetaObjectTypes();
-        console.log('rs', rs)
-      })
+    fetchMetaObject();
+
 });
 
 document.addEventListener("DOMContentLoaded", function () {
