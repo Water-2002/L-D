@@ -88,8 +88,16 @@ const createMetaObject = async (type, fields) => {
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   sbBtn.addEventListener('click', async () => {
-    let productId = sbBtn.getAttribute('product-id')
+    let productId = sbBtn.getAttribute('product-id');
+    let content = document.querySelector('.comment-content').textContent;
     await fetchMetaObject();
+    let field = [
+      { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+      { key: "content", value: content }
+      { key: "created_at", value: new Date() }
+      
+    ]
+    await createMetaObject('comment', field);
     // createMetaObject('your_metaobject_type', [
     //   { key: "title", value: "Sample Title" },
     //   { key: "description", value: "Sample Description" }
