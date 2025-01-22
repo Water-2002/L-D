@@ -116,10 +116,6 @@ const updateMetafield = async (productId, newMetaObjectId) => {
     const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
     const updatedValue = [...existingValue, newMetaObjectId];
     console.log(updatedValue)
-    const fieldsString = updatedValue
-      .map(field => `${field}`)
-      .join(", ");
-     console.log(typeof fieldsString)
      const updateMutation = `
       mutation {
         metafieldsSet(metafields: [
@@ -128,7 +124,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
             namespace: "custom",
             key: "comments",
             type: "list.metaobject_reference",
-            value: "[${fieldsString}]"
+            value: ${JSON.stringify(JSON.stringify(updatedValue))}
           }
         ]) {
           metafields {
