@@ -97,11 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
       { key: "created_at", value: new Date() }
       
     ]
-    await createMetaObject('comment', field);
-    // createMetaObject('your_metaobject_type', [
-    //   { key: "title", value: "Sample Title" },
-    //   { key: "description", value: "Sample Description" }
-    // ]).then(metaobject => console.log('Created MetaObject:', metaobject));
+    createMetaObject('comment', field).then(metaobject => console.log('Created MetaObject:', metaobject));
   })
 });
 
