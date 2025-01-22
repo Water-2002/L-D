@@ -144,7 +144,6 @@ const updateMetafield = async (productId, newMetaObjectId) => {
     }
   `;
 
-  try {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
