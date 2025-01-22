@@ -114,7 +114,7 @@ async function createMetaObject() {
 }
 
 const fetchMetaObject = async () => {
-  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-01/graphql.json`;
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const query = `
         query {
@@ -123,7 +123,6 @@ const fetchMetaObject = async () => {
           node {
             name
             type
-            description
           }
         }
       }
