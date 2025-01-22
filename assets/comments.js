@@ -118,15 +118,15 @@ const fetchMetaObject = async () => {
 
   const query = `
         query {
-      metaobjectTypes(first: 50) {
-        edges {
-          node {
-            name
-            type
+          metaobjectTypes(first: 50) {
+            edges {
+              node {
+                name
+                type
+              }
+            }
           }
         }
-      }
-    }
       `;
 
     const response = await fetch(endpoint, {
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sbBtn.addEventListener('click', async () => {
     let productId = sbBtn.getAttribute('product-id')
     let rs = await getMetafield(productId);
-    fetchMetaObject();
+    await fetchMetaObject();
   })
 });
 
