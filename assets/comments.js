@@ -118,12 +118,13 @@ const fetchMetaObject = async () => {
 
   const query = `
         query {
-          metaobjectTypes(first: 50) {
-            edges {
-              node {
-                name
-                type
-              }
+          metaobjectByHandle(handle: "comment-ihqgkdq3") {
+            id
+            handle
+            type
+            fields {
+              key
+              value
             }
           }
         }
