@@ -155,10 +155,6 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
     console.log('Updated Metafield:', updateResult.data.metafieldUpsert.metafield);
     return updateResult.data.metafieldUpsert.metafield;
-  } catch (error) {
-    console.error('Error:', error.message);
-    return null;
-  }
 };
 
 
