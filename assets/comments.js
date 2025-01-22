@@ -116,38 +116,40 @@ const updateMetafield = async (productId, newMetaObjectId) => {
     const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
     const updatedValue = [...existingValue, newMetaObjectId];
     console.log(updatedValue)
-    const endpointOld = `https://${storeName}.myshopify.com/admin/api/2022-10/graphql.json`;
-
-    const mutation = `
-    mutation {
-      metafieldUpsert(input: {
-        namespace: "custom",
-        key: "comments",
-        type: "list.metaobject_reference",
-        value: "${updatedValue}"
-      }) {
-        metafields {
-          id
-          namespace
-          key
-          value
-        }
-        userErrors {
-          field
-          message
+   
+     const updateMutation = `
+      mutation {
+        metafieldSet(input: {
+          ownerId: "gid://shopify/Product/${productId}",
+          metafields: [
+            {
+              namespace: "custom",
+              key: "comments",
+              type: "list.metaobject_reference",
+              value: ${JSON.stringify(updatedValue)}
+            }
+          ]
+        }) {
+          metafields {
+            id
+            value
+          }
+          userErrors {
+            field
+            message
+          }
         }
       }
-    }
-  `;
+    `;
 
-    const response = await fetch(endpointOld, {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'X-Shopify-Access-Token': accessToken,
       },
-      body: JSON.stringify({ query: mutation }),
+      body: JSON.stringify({ query: updateMutation }),
     });
 
     const result = await response.json();
