@@ -84,7 +84,7 @@ const createMetaObject = async (type, fields) => {
   console.log('.',  result.data.metaobjectCreate.metaobject)
   const activateMutation = `
     mutation {
-      metaobjectUpdate(id: "${result.data.metaobjectCreate.metaobject.id}", metaobject: { capabilities: publishable: { status: ACTIVE } }) {
+      metaobjectUpdate(id: "${result.data.metaobjectCreate.metaobject.id}", metaobject: { capabilities: { publishable: { status: ACTIVE } } }) {
         metaobject {
           id
           status
