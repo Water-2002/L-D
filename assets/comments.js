@@ -80,6 +80,38 @@ const createMetaObject = async (type, fields) => {
       return null;
     }
 
+   const activateMutation = `
+    mutation {
+      metaobjectUpdate(id: "${metaobject.id}", metaobject: { status: ACTIVE }) {
+        metaobject {
+          id
+          status
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const activateResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-Shopify-Access-Token': accessToken,
+    },
+    body: JSON.stringify({ query: activateMutation }),
+  });
+
+    const activateResult = await activateResponse.json();
+    if (activateResult.errors || activateResult.data.metaobjectUpdate.userErrors.length > 0) {
+      console.error('Error activating MetaObject:', activateResult.errors || activateResult.data.metaobjectUpdate.userErrors);
+      return null;
+    }
+
+
     return result.data.metaobjectCreate.metaobject;
 };
 
