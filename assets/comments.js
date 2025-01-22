@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     createMetaObject('comment', [
         { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
         { key: "content", value: content },
-        { key: "created_at", value: dateNow.soString() }
+        { key: "created_at", value: dateNow.toString() }
       ]).then(async (metaobject) => {
         console.log('metaobject', metaobject)
         await updateMetafield(productId, metaobject.id);
