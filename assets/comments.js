@@ -84,7 +84,7 @@ const createMetaObject = async (type, fields) => {
 
 
 const updateMetafield = async (productId, newMetaObjectId) => {
-  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const getMetafieldQuery = `
       query {
