@@ -118,14 +118,11 @@ const fetchMetaObject = async () => {
 
   const query = `
         query {
-          metaobjectByHandle(handle: "comment-ihqgkdq3") {
+          metaobjectByHandle(handle: "comment-ihqgkdq3", type:"comment") {
             id
             handle
             type
-            fields {
-              key
-              value
-            }
+            
           }
         }
       `;
