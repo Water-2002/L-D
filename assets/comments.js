@@ -125,7 +125,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
             namespace: "custom",
             key: "comments",
             type: "list.metaobject_reference",
-            value: ${JSON.stringify(updatedValue)}
+            value: "${JSON.stringify(updatedValue)}"
           }
         ]) {
           metafields {
