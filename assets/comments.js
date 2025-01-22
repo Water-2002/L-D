@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     await fetchMetaObject();
     createMetaObject('comment', [
       { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-      // { key: "content", value: content },
-      // { key: "created_at", value: new Date() }
+      { key: "content", value: "This is a sample comment" },
+      { key: "created_at", value: "2025-01-22T15:30:00Z" }
     ]).then(metaobject => console.log('Created MetaObject:', metaobject));
   })
 });
