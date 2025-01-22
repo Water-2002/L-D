@@ -169,11 +169,12 @@ document.addEventListener("DOMContentLoaded", function () {
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').textContent;
+    let dateNow = new Date()
     await fetchMetaObject();
     createMetaObject('comment', [
         { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
         { key: "content", value: content },
-        { key: "created_at", value: "2025-01-22T15:30:00Z" }
+        { key: "created_at", value: dateNow }
       ]).then(async (metaobject) => {
         console.log('metaobject', metaobject)
         await updateMetafield(productId, metaobject.id);
