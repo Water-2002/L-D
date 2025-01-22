@@ -119,7 +119,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
     const mutation = `
     mutation {
-      metafieldSet(input: {
+      metafieldsSet(input: {
         ownerId: "${productId}",
         metafields: [
           {
