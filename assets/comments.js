@@ -69,7 +69,7 @@ const createMetaObject = async (type, fields) => {
       },
       body: JSON.stringify({ query: mutation }),
     });
-
+    console.log('Response Status:', response.status);
     const result = await response.json();
     if (result.errors || result.data.metaobjectCreate.userErrors.length > 0) {
       console.error('Error creating MetaObject:', result.errors || result.data.metaobjectCreate.userErrors);
