@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let productId = sbBtn.getAttribute('product-id')
     let rs = await getMetafield(productId);
     fetchMetaObject();
-
+  })
 });
 
 document.addEventListener("DOMContentLoaded", function () {
