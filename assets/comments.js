@@ -120,18 +120,21 @@ const updateMetafield = async (productId, newMetaObjectId) => {
      const updateMutation = `
       mutation {
         metafieldSet(input: {
-          ownerId: "gid://shopify/Product/${productId}",
+          ownerId: "${productId}",
           metafields: [
             {
               namespace: "custom",
               key: "comments",
               type: "list.metaobject_reference",
-              value: ${JSON.stringify(updatedValue)}
+              value: "${updatedValue}"
             }
           ]
         }) {
           metafields {
             id
+            namespace
+            key
+            type
             value
           }
           userErrors {
