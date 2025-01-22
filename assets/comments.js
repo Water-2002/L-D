@@ -117,14 +117,14 @@ const fetchMetaObject = async () => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const query = `
-
+        query {
           metaobjectByHandle(handle: "comment-ihqgkdq3", type:"comment") {
             id
             handle
             type
             
           }
-        
+        }
       `;
 
     const response = await fetch(endpoint, {
@@ -133,7 +133,7 @@ const fetchMetaObject = async () => {
         'Content-Type': 'application/json',
         'X-Shopify-Access-Token': accessToken,
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query: query }),
     });
 
     if (!response.ok) {
