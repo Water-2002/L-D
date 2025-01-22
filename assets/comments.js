@@ -46,7 +46,7 @@ const createMetaObject = async (type, fields) => {
       .join(", ");
   const mutation = `
     mutation {
-      metaobjectCreate(input: {
+      metaobjectCreate(metaobject: {
         type: "${type}",
         fields: [${fieldsString}]
       }) {
