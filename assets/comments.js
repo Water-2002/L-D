@@ -162,7 +162,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
       return null;
     }
 
-    console.log('Updated Metafield:', result.data.metafieldSet.metafields);
+    console.log('Updated Metafield:', result.data);
     return result.data.metafieldSet.metafields;
 };
 
