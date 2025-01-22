@@ -128,7 +128,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
             namespace: "custom",
             key: "comments",
             type: "list.metaobject_reference",
-            value: "${fieldsString}"
+            value: ["${fieldsString}"]
           }
         ]) {
           metafields {
