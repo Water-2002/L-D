@@ -145,7 +145,7 @@ const fetchMetaObject = async () => {
     }
 
     const result = await response.json();
-    console.log('MetaObject Data:', result.data.metaobject);
+    console.log('MetaObject Data:', result.data);
 };
 
 document.addEventListener("DOMContentLoaded", function () {
