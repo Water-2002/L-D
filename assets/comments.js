@@ -119,22 +119,19 @@ const updateMetafield = async (productId, newMetaObjectId) => {
    
      const updateMutation = `
       mutation {
-        metafieldSet(input: {
-          ownerId: "${productId}",
-          metafields: [
-            {
-              namespace: "custom",
-              key: "comments",
-              type: "list.metaobject_reference",
-              value: "${updatedValue}"
-            }
-          ]
-        }) {
+        metafieldsSet(metafields: [
+          {
+            ownerId: "${productId}",
+            namespace: "custom",
+            key: "comments",
+            type: "list.metaobject_reference",
+            value: ${JSON.stringify(updatedValue)}
+          }
+        ]) {
           metafields {
             id
             namespace
             key
-            type
             value
           }
           userErrors {
