@@ -170,14 +170,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').textContent;
     await fetchMetaObject();
-    // createMetaObject('comment', [
-    //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-    //     { key: "content", value: "This is a sample comment 2" },
-    //     { key: "created_at", value: "2025-01-22T15:30:00Z" }
-    //   ]).then(async (metaobject) => {
-    //     console.log('metaobject', metaobject)
-    //   });
-    await updateMetafield(productId, "gid://shopify/Metaobject/82227527923");
+    createMetaObject('comment', [
+        { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+        { key: "content", value: content },
+        { key: "created_at", value: "2025-01-22T15:30:00Z" }
+      ]).then(async (metaobject) => {
+        console.log('metaobject', metaobject)
+        await updateMetafield(productId, metaobject.id);
+      });
 
     
   })
