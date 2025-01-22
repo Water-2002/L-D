@@ -119,7 +119,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
     const fieldsString = updatedValue
       .map(field => `${field}`)
       .join(", ");
-     console.log(fieldsString)
+     console.log(typeof fieldsString)
      const updateMutation = `
       mutation {
         metafieldsSet(metafields: [
