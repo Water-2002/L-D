@@ -117,44 +117,53 @@ const updateMetafield = async (productId, newMetaObjectId) => {
     const updatedValue = [...existingValue, newMetaObjectId];
     console.log(existingValue, existingValue)
 
-        const updateMetafieldMutation = `
-      mutation {
-        metafieldUpsert(input: {
-          namespace: "custom",
-          key: "comments",
-          type: "list.metaobject_reference",
-          value: ${JSON.stringify(updatedValue)}
-        }) {
-          metafield {
-            id
-            value
+    const mutation = `
+    mutation {
+      metafieldSet(input: {
+        ownerId: "${productId}",
+        metafields: [
+          {
+            namespace: "custom",
+            key: "comments",
+            type: "list.metaobject_reference",
+            value: ${JSON.stringify(updatedValue)}
           }
-          userErrors {
-            field
-            message
-          }
+        ]
+      }) {
+        metafields {
+          id
+          namespace
+          key
+          value
+        }
+        userErrors {
+          field
+          message
         }
       }
-    `;
+    }
+  `;
 
-    const updateResponse = await fetch(endpoint, {
+  try {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'X-Shopify-Access-Token': accessToken,
       },
-      body: JSON.stringify({ query: updateMetafieldMutation }),
+      body: JSON.stringify({ query: mutation }),
     });
 
-    const updateResult = await updateResponse.json();
-    if (updateResult.errors || updateResult.data.metafieldUpsert.userErrors.length > 0) {
-      console.error('Error updating Metafield:', updateResult.errors || updateResult.data.metafieldUpsert.userErrors);
+    const result = await response.json();
+
+    if (result.errors || result.data.metafieldSet.userErrors.length > 0) {
+      console.error('Error updating Metafield:', result.errors || result.data.metafieldSet.userErrors);
       return null;
     }
 
-    console.log('Updated Metafield:', updateResult.data.metafieldUpsert.metafield);
-    return updateResult.data.metafieldUpsert.metafield;
+    console.log('Updated Metafield:', result.data.metafieldSet.metafields);
+    return result.data.metafieldSet.metafields;
 };
 
 
@@ -167,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     await fetchMetaObject();
     createMetaObject('comment', [
         { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-        { key: "content", value: "This is a sample comment 1" },
+        { key: "content", value: "This is a sample comment 2" },
         { key: "created_at", value: "2025-01-22T15:30:00Z" }
       ]).then(async (metaobject) => {
         console.log('metaobject', metaobject)
