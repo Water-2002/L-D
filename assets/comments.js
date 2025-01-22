@@ -71,54 +71,6 @@ async function addMetaObjectToProduct(metaObjectId) {
   }
 }
 
-
-async function fetchMetaObjectByHandle() {
-  const response = await fetch(
-    `https://${storeName}.myshopify.com/admin/api/2023-01/metaobjects/${metaObjectType}/${metaObjectHandle}.json`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Access-Token": accessToken
-      }
-    }
-  );
-
-  if (response.ok) {
-    const result = await response.json();
-    console.log("MetaObject fetched successfully:", result.metaobject);
-    return result.metaobject;
-  } else {
-    const error = await response.json();
-    console.error("Error fetching MetaObject by handle:", error);
-    return null;
-  }
-}
-
-async function fetchAllMetaObjectTypes() {
-  const response = await fetch(
-    `https://${storeName}.myshopify.com/admin/api/2025-01/metaobject-definitions.json`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Access-Token": accessToken
-      }
-    }
-  );
-
-  if (response.ok) {
-    const result = await response.json();
-    console.log("MetaObject Types:", result.metaobject_definitions);
-    return result.metaobject_definitions;
-  } else {
-    const error = await response.json();
-    console.error("Error fetching MetaObject types:", error);
-    return null;
-  }
-}
-
-
 async function createMetaObject() {
   const metaObjectData = {
     metaobject: {
@@ -161,7 +113,43 @@ async function createMetaObject() {
   }
 }
 
+const fetchMetaObject = async () => {
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-01/graphql.json`;
 
+  const query = `
+    query {
+      metaobject(handle: "comment-ihqgkdq3", type: "comment") {
+        id
+        handle
+        type
+        fields {
+          key
+          value
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': accessToken,
+      },
+      body: JSON.stringify({ query }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('MetaObject Data:', result.data.metaobject);
+  } catch (error) {
+    console.error('Error fetching MetaObject:', error.message);
+  }
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
