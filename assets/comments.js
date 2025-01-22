@@ -157,7 +157,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
     const result = await response.json();
 
-    if (result.errors || result.data.metafieldSet.userErrors.length > 0) {
+    if (result.errors) {
       console.error('Error updating Metafield:', result.errors || result.data.metafieldSet.userErrors);
       return null;
     }
