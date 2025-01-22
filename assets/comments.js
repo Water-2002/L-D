@@ -123,7 +123,7 @@ const updateMetafield = async (productId) => {
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   sbBtn.addEventListener('click', async () => {
-    let productId = sbBtn.getAttribute('product-id');
+    let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').textContent;
     // await fetchMetaObject();
     // createMetaObject('comment', [
