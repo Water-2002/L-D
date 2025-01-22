@@ -118,16 +118,17 @@ const fetchMetaObject = async () => {
 
   const query = `
     query {
-      metaobject(handle: "comment-ihqgkdq3") {
-        id
-        handle
+  metaobjectTypes(first: 50) {
+    edges {
+      node {
+        name
         type
-        fields {
-          key
-          value
-        }
+        description
       }
     }
+  }
+}
+This query 
   `;
 
   try {
