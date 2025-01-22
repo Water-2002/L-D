@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     await fetchMetaObject();
     let field = [
       { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-      { key: "content", value: content }
+      { key: "content", value: content },
       { key: "created_at", value: new Date() }
       
     ]
