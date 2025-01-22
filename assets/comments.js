@@ -94,9 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let field = [
       { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
       { key: "content", value: content },
-      { key: "created_at", value: new Date() }
-      
-    ]
+      { key: "created_at", value: new Date() },
+    ],
     createMetaObject('comment', field).then(metaobject => console.log('Created MetaObject:', metaobject));
   })
 });
