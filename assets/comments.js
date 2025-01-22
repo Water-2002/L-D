@@ -48,7 +48,8 @@ const createMetaObject = async (type, fields) => {
     mutation {
       metaobjectCreate(metaobject: {
         type: "${type}",
-        fields: [${fieldsString}]
+        fields: [${fieldsString}],
+        status: ACTIVE
       }) {
         metaobject {
           id
