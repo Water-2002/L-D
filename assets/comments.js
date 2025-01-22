@@ -115,7 +115,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
     const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
     const updatedValue = [...existingValue, newMetaObjectId];
-    console.log(existingValue, existingValue)
+    console.log(updatedValue)
 
     const mutation = `
     mutation {
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //   ]).then(async (metaobject) => {
     //     console.log('metaobject', metaobject)
     //   });
-        await updateMetafield(productId, "gid://shopify/Metaobject/82227527923");
+    await updateMetafield(productId, "gid://shopify/Metaobject/82227527923");
 
     
   })
