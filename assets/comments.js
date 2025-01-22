@@ -41,12 +41,14 @@ const fetchMetaObject = async () => {
 
 const createMetaObject = async (type, fields) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
-
+  const fieldsString = fields
+      .map(field => `{ key: "${field.key}", value: "${field.value}" }`)
+      .join(", ");
   const mutation = `
     mutation {
       metaobjectCreate(input: {
         type: "${type}",
-        fields: ${fields}
+        fields: [${fieldsString}]
       }) {
         metaobject {
           id
@@ -88,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let content = document.querySelector('.comment-content').textContent;
     await fetchMetaObject();
     createMetaObject('comment', [
-      { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-      { key: "content", value: "This is a sample comment" },
-      { key: "created_at", value: "2025-01-22T15:30:00Z" }
-    ]).then(metaobject => console.log('Created MetaObject:', metaobject));
+        { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+        { key: "content", value: "This is a sample comment" },
+        { key: "created_at", value: "2025-01-22T15:30:00Z" }
+      ]).then(metaobject => console.log('Created MetaObject:', metaobject));
   })
 });
 
