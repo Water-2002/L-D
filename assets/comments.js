@@ -127,7 +127,6 @@ const fetchMetaObject = async () => {
         }
       }
     }
-    This query 
       `;
 
     const response = await fetch(endpoint, {
