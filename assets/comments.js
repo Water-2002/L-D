@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   sbBtn.addEventListener('click', async () => {
     let productId = sbBtn.getAttribute('product-id')
+    await fetchMetaObject();
     // createMetaObject('your_metaobject_type', [
     //   { key: "title", value: "Sample Title" },
     //   { key: "description", value: "Sample Description" }
