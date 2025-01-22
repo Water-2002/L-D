@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
         { key: "content", value: "This is a sample comment 1" },
         { key: "created_at", value: "2025-01-22T15:30:00Z" }
-      ]).then(metaobject => {
+      ]).then(async (metaobject) => {
         console.log('metaobject', metaobject)
         await updateMetafield(productId, metaobject.id);
       });
