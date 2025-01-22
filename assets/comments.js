@@ -117,21 +117,20 @@ const fetchMetaObject = async () => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-01/graphql.json`;
 
   const query = `
-    query {
-  metaobjectTypes(first: 50) {
-    edges {
-      node {
-        name
-        type
-        description
+        query {
+      metaobjectTypes(first: 50) {
+        edges {
+          node {
+            name
+            type
+            description
+          }
+        }
       }
     }
-  }
-}
-This query 
-  `;
+    This query 
+      `;
 
-  try {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -147,9 +146,6 @@ This query
 
     const result = await response.json();
     console.log('MetaObject Data:', result.data.metaobject);
-  } catch (error) {
-    console.error('Error fetching MetaObject:', error.message);
-  }
 };
 
 document.addEventListener("DOMContentLoaded", function () {
