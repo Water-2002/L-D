@@ -87,11 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let productId = sbBtn.getAttribute('product-id');
     let content = document.querySelector('.comment-content').textContent;
     await fetchMetaObject();
-    let time = new Date()
     createMetaObject('comment', [
       { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
       { key: "content", value: content },
-      { key: "created_at", value: time.toISOString() }
+      { key: "created_at", value: new Date().toISOString() }
     ]).then(metaobject => console.log('Created MetaObject:', metaobject));
   })
 });
