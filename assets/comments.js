@@ -40,7 +40,7 @@ const fetchMetaObject = async () => {
 
 
 const createMetaObject = async (type, fields) => {
-  const endpoint = `https://${storeName}.myshopify.com/admin/api/25-01/graphql.json`;
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
 
   const mutation = `
     mutation {
@@ -65,6 +65,7 @@ const createMetaObject = async (type, fields) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'X-Shopify-Access-Token': accessToken,
       },
       body: JSON.stringify({ query: mutation }),
