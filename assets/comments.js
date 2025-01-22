@@ -83,7 +83,7 @@ const createMetaObject = async (type, fields) => {
 };
 
 
-const updateMetafield = async (productId) => {
+const updateMetafield = async (productId, newMetaObjectId) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
 
   const getMetafieldQuery = `
@@ -114,8 +114,51 @@ const updateMetafield = async (productId) => {
     }
 
     const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
-    // const updatedValue = [...existingValue, newMetaObjectId];
+    const updatedValue = [...existingValue, newMetaObjectId];
     console.log(existingValue, existingValue)
+
+        const updateMetafieldMutation = `
+      mutation {
+        metafieldUpsert(input: {
+          namespace: "custom",
+          key: "comments",
+          type: "list.metaobject_reference",
+          value: ${JSON.stringify(updatedValue)}
+        }) {
+          metafield {
+            id
+            value
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }
+    `;
+
+    const updateResponse = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Shopify-Access-Token': accessToken,
+      },
+      body: JSON.stringify({ query: updateMetafieldMutation }),
+    });
+
+    const updateResult = await updateResponse.json();
+    if (updateResult.errors || updateResult.data.metafieldUpsert.userErrors.length > 0) {
+      console.error('Error updating Metafield:', updateResult.errors || updateResult.data.metafieldUpsert.userErrors);
+      return null;
+    }
+
+    console.log('Updated Metafield:', updateResult.data.metafieldUpsert.metafield);
+    return updateResult.data.metafieldUpsert.metafield;
+  } catch (error) {
+    console.error('Error:', error.message);
+    return null;
+  }
 };
 
 
@@ -125,14 +168,17 @@ document.addEventListener("DOMContentLoaded", function () {
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').textContent;
-    // await fetchMetaObject();
-    // createMetaObject('comment', [
-    //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-    //     { key: "content", value: "This is a sample comment" },
-    //     { key: "created_at", value: "2025-01-22T15:30:00Z" }
-    //   ]).then(metaobject => console.log('Created MetaObject:', metaobject));
+    await fetchMetaObject();
+    createMetaObject('comment', [
+        { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+        { key: "content", value: "This is a sample comment" },
+        { key: "created_at", value: "2025-01-22T15:30:00Z" }
+      ]).then(metaobject => {
+        console.log('metaobject')
+        await updateMetafield(productId, metaobject.id);
+      });
 
-    await updateMetafield(productId);
+    
   })
 });
 
