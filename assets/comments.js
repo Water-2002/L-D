@@ -61,7 +61,6 @@ const createMetaObject = async (type, fields) => {
     }
   `;
 
-  try {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -78,10 +77,6 @@ const createMetaObject = async (type, fields) => {
     }
 
     return result.data.metaobjectCreate.metaobject;
-  } catch (error) {
-    console.error('Error creating MetaObject:', error.message);
-    return null;
-  }
 };
 
 
