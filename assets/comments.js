@@ -80,9 +80,10 @@ const createMetaObject = async (type, fields) => {
       return null;
     }
 
-   const activateMutation = `
+    // Activate the MetaObject
+  const activateMutation = `
     mutation {
-      metaobjectUpdate(id: "${metaobject.id}", metaobject: { status: ACTIVE }) {
+      metaobjectUpdate(id: "${metaobject.id}", metaobject: { status: 'ACTIVE' }) {
         metaobject {
           id
           status
@@ -105,12 +106,14 @@ const createMetaObject = async (type, fields) => {
     body: JSON.stringify({ query: activateMutation }),
   });
 
-    const activateResult = await activateResponse.json();
-    if (activateResult.errors || activateResult.data.metaobjectUpdate.userErrors.length > 0) {
-      console.error('Error activating MetaObject:', activateResult.errors || activateResult.data.metaobjectUpdate.userErrors);
-      return null;
-    }
+  const activateResult = await activateResponse.json();
+  if (activateResult.errors || activateResult.data.metaobjectUpdate.userErrors.length > 0) {
+    console.error('Error activating MetaObject:', activateResult.errors || activateResult.data.metaobjectUpdate.userErrors);
+    return null;
+  }
 
+  console.log('Activated MetaObject:', activateResult.data.metaobjectUpdate.metaobject);
+  return activateResult.data.metaobjectUpdate.metaobject;
 
     return result.data.metaobjectCreate.metaobject;
 };
