@@ -79,11 +79,18 @@ const createMetaObject = async (type, fields) => {
       return null;
     }
 
+    return result.data.metaobjectCreate.metaobject;
+};
+
+
+const activeMetaObject = async (metaObjectId) => {
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
+ 
     // Activate the MetaObject
-  console.log('.',  result.data.metaobjectCreate.metaobject)
+  console.log('.',  metaObjectId)
   const activateMutation = `
     mutation {
-      metaobjectUpdate(id: "${result.data.metaobjectCreate.metaobject.id}", metaobject: { capabilities: { publishable: { status: ACTIVE } } }) {
+      metaobjectUpdate(id: "${metaObjectId}", metaobject: { capabilities: { publishable: { status: ACTIVE } } }) {
         metaobject {
           id
           status
@@ -117,7 +124,6 @@ const createMetaObject = async (type, fields) => {
 
     return result.data.metaobjectCreate.metaobject;
 };
-
 
 const updateMetafield = async (productId, newMetaObjectId) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
@@ -219,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //   ]).then(async (metaobject) => {
     //     console.log('metaobject', metaobject)
     //   });
-        await updateMetafield(productId, 'gid://shopify/Metaobject/82289492211');
+        await activeMetaObject('gid://shopify/Metaobject/82289492211');
 
     
   })
