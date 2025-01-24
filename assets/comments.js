@@ -211,6 +211,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const now = new Date();
     const formattedDate = formatDateToISO(now);
     let current = document.querySelector('html').getAttribute('account')
+    console.log(current)
+    
     let user = current == 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
     console.log(user)
     // createMetaObject('comment', [
