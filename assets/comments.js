@@ -93,7 +93,7 @@ const activeMetaObject = async (metaObjectId) => {
       metaobjectUpdate(id: "${metaObjectId}", metaobject: { capabilities: { publishable: { status: ACTIVE } } }) {
         metaobject {
           id
-          status
+          handle
         }
         userErrors {
           field
