@@ -218,14 +218,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const now = new Date();
     const formattedDate = formatDateToISO(now);
     await fetchMetaObject();
-    // createMetaObject('comment', [
-    //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-    //     { key: "content", value: content },
-    //     { key: "created_at", value: formattedDate }
-    //   ]).then(async (metaobject) => {
-    //     console.log('metaobject', metaobject)
-    //   });
-        await activeMetaObject('gid://shopify/Metaobject/82289492211');
+    createMetaObject('comment', [
+        { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+        { key: "content", value: content },
+        { key: "created_at", value: formattedDate }
+      ]).then(async (metaobject) => {
+        console.log('metaobject', metaobject)
+        await activeMetaObject(metaobject.id);
+        await updateMetafield(productId, metaobject.id)
+      });
 
     
   })
