@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let current = document.querySelector('html').getAttribute('account')
     console.log(current)
     
-    let user = current == 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
+    let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
     console.log(user)
     // createMetaObject('comment', [
     //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
