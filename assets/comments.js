@@ -8,28 +8,28 @@ const fetchMetaObject = async (handle, type) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const query = `
-        query {
-           metaobjectByHandle(handle: { handle: "${handle}", type: "${type}" }) {
-            id
-          }
-        }
-      `;
-
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': accessToken,
-      },
-      body: JSON.stringify({ query: query }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    query {
+      metaobjectByHandle(handle: "${handle}", type: "${type}") {
+        id
+      }
     }
+  `;
 
-    const result = await response.json();
-    console.log('MetaObject Data:', result);
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': accessToken,
+    },
+    body: JSON.stringify({ query: query }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  const result = await response.json();
+  console.log('MetaObject Data:', result);
 };
 
 
