@@ -84,7 +84,7 @@ const createMetaObject = async (type, fields) => {
 
 
 const activeMetaObject = async (metaObjectId) => {
-  const endpoint = `https://${storeName}.myshopify.com/admin/api/2023-10/graphql.json`;
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
  
     // Activate the MetaObject
   console.log('.',  metaObjectId)
