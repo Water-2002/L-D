@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
-    let content = document.querySelector('.comment-content').textContent;
+    let content = document.querySelector('.comment-content').value;
     const formatDateToISO = (date) => {
       return date.toISOString().split('.')[0]; // Remove the milliseconds
     };
