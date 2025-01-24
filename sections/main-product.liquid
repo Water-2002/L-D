@@ -707,7 +707,7 @@
 
     {% render 'product-media-modal', variant_images: variant_images %}
     <div class="total-like">
-      
+      {{ product.metafields.custom.likes.size }}
     </div>
     <div class="submit-comment" product-id="{{ product.id }}">
       <textarea rows="4" class="comment-content">
