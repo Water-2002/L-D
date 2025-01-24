@@ -709,7 +709,7 @@
     <div class="total-like">
       {% assign metaobject_list = product.metafields.custom.likes.values %}
 
-      {{ metaobject_list }}
+      {{ metaobject_list | size }}
     </div>
     <div class="submit-comment" product-id="{{ product.id }}">
       <textarea rows="4" class="comment-content">
