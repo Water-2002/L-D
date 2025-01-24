@@ -4,20 +4,14 @@ const metafieldNamespace = "custom";
 const metafieldKey = "comments"; 
 
 
-const fetchMetaObject = async () => {
+const fetchMetaObject = async (handle, type) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const query = `
         query {
-           metaobjectByHandle(handle: { handle: "comment-ihqgkdq3", type: "comment" }) {
+           metaobjectByHandle(handle: { handle: "${handle}", type: "${type}" }) {
             id
             handle
-            type
-            fields {
-              key
-              value
-            }
-          }
         }
       `;
 
@@ -205,7 +199,6 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 };
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   sbBtn.addEventListener('click', async () => {
@@ -217,16 +210,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(content.trim())
     const now = new Date();
     const formattedDate = formatDateToISO(now);
-    await fetchMetaObject();
-    createMetaObject('comment', [
-        { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-        { key: "content", value: content.trim() },
-        { key: "created_at", value: formattedDate }
-      ]).then(async (metaobject) => {
-        console.log('metaobject', metaobject)
-        await activeMetaObject(metaobject.id);
-        await updateMetafield(productId, metaobject.id)
-      });
+    let current = document.querySelector('html').getAttribute('account')
+    let user = current == 'none' ? await fetchMetaObject(current, 'author') : none;
+    console.log(user)
+    // createMetaObject('comment', [
+    //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
+    //     { key: "content", value: content.trim() },
+    //     { key: "created_at", value: formattedDate }
+    //   ]).then(async (metaobject) => {
+    //     console.log('metaobject', metaobject)
+    //     await activeMetaObject(metaobject.id);
+    //     await updateMetafield(productId, metaobject.id)
+    //   });
 
     
   })
