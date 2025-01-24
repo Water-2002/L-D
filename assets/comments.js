@@ -11,7 +11,7 @@ const fetchMetaObject = async (handle, type) => {
         query {
            metaobjectByHandle(handle: { handle: "${handle}", type: "${type}" }) {
             id
-            handle
+          }
         }
       `;
 
