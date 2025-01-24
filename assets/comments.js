@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formatDateToISO = (date) => {
       return date.toISOString().split('.')[0]; // Remove the milliseconds
     };
-    console.log(content)
+    console.log(content.trim())
     const now = new Date();
     const formattedDate = formatDateToISO(now);
     // await fetchMetaObject();
