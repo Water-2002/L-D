@@ -3635,6 +3635,11 @@ facet-filters-form .facets-vertical-form {
   display: none !important;
 }
 
+.comments {
+      display: flex;
+  flex-direction: column-reverse;
+}
+
 .comment {
   display: flex;
   align-items: flex-start;
