@@ -215,15 +215,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
     console.log(user.id)
-    // createMetaObject('comment', [
-    //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
-    //     { key: "content", value: content.trim() },
-    //     { key: "created_at", value: formattedDate }
-    //   ]).then(async (metaobject) => {
-    //     console.log('metaobject', metaobject)
-    //     await activeMetaObject(metaobject.id);
-    //     await updateMetafield(productId, metaobject.id)
-    //   });
+    createMetaObject('comment', [
+        { key: "owner", value: user.id },
+        { key: "content", value: content.trim() },
+        { key: "created_at", value: formattedDate }
+      ]).then(async (metaobject) => {
+        console.log('metaobject', metaobject)
+        await activeMetaObject(metaobject.id);
+        await updateMetafield(productId, metaobject.id)
+      });
 
     
   })
