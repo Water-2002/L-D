@@ -30,6 +30,7 @@ const fetchMetaObject = async (handle, type) => {
 
   const result = await response.json();
   console.log('MetaObject Data:', result);
+  return result.data.metaobjectByHandle
 };
 
 
@@ -211,10 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const now = new Date();
     const formattedDate = formatDateToISO(now);
     let current = document.querySelector('html').getAttribute('account')
-    console.log(current)
     
     let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
-    console.log(user)
+    console.log(user.id)
     // createMetaObject('comment', [
     //     { key: "owner", value: "gid://shopify/Metaobject/81172988147" },
     //     { key: "content", value: content.trim() },
