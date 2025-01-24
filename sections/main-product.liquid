@@ -707,9 +707,9 @@
 
     {% render 'product-media-modal', variant_images: variant_images %}
     <div class="total-like">
-      {% assign metaobject_list = product.metafields.custom.likes %}
+      {% assign metaobject_list = product.metafields.custom.likes.values %}
 
-      {{ metaobject_list | json }}
+      {{ metaobject_list }}
     </div>
     <div class="submit-comment" product-id="{{ product.id }}">
       <textarea rows="4" class="comment-content">
