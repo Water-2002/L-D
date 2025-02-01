@@ -61,21 +61,19 @@
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
+  {% assign highest_product = null %}
+{% assign highest_value = 0 %}
 
-  {% assign largest_product = nil %}
-  {% assign largest_count = 0 %}
+{% for product in collections.all.products %}
+  {% assign metafield_value = product.metafields.custom.total_like | default: 0 %}
   
-  {% for product in collections.all.products %}
-    {% assign metafield_list = product.metafields.custom.likes %}
-    {% assign count = metafield_list.size %}
-  
-    {% if count > largest_count %}
-      {% assign largest_count = count %}
-      {% assign largest_product = product %}
-    {% endif %}
-  {% endfor %}
-  
-  <p>Product with the most items: {{ largest_product.title }} ({{ largest_count }} items)</p>
+  {% if metafield_value > highest_value %}
+    {% assign highest_value = metafield_value %}
+    {% assign highest_product = product %}
+  {% endif %}
+{% endfor %}
+
+<p>Product with the highest value: {{ highest_product.title }} ({{ highest_value }})</p>
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
