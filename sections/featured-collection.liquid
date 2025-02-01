@@ -61,17 +61,15 @@
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
-  {% assign highest_product = null %}
-{% assign highest_value = 0 %}
+{% assign sorted_products = collections.all.products | sort: "metafields.custom.total_like" | reverse %}
 
-{% for product in collections.all.products %}
-  {% assign metafield_value = product.metafields.custom.total_like | default: 0 %}
-  
-  {% if metafield_value > highest_value %}
-    {% assign highest_value = metafield_value %}
-    {% assign highest_product = product %}
-  {% endif %}
-{% endfor %}
+{% assign first_product = sorted_products[0] %}
+{% assign second_product = sorted_products[1] %}
+{% assign third_product = sorted_products[2] %}
+
+<p>1st: {{ first_product.title }} ({{ first_product.metafields.custom.your_metafield_key }})</p>
+<p>2nd: {{ second_product.title }} ({{ second_product.metafields.custom.your_metafield_key }})</p>
+<p>3rd: {{ third_product.title }} ({{ third_product.metafields.custom.your_metafield_key }})</p>
 
 <p>Product with the highest value: {{ highest_product.title }} ({{ highest_value }})</p>
   <div
