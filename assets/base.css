@@ -3650,3 +3650,12 @@ facet-filters-form .facets-vertical-form {
 .comment__avata img {
   border-radius: 50%;
 }
+
+.btn-like {
+display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 15px;
+    border-radius: 14px;
+    border: none;
+}
