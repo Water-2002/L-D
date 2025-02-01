@@ -67,11 +67,9 @@
 {% assign second_product = sorted_products[1] %}
 {% assign third_product = sorted_products[2] %}
 
-<p>1st: {{ first_product.title }} ({{ first_product.metafields.custom.your_metafield_key }})</p>
-<p>2nd: {{ second_product.title }} ({{ second_product.metafields.custom.your_metafield_key }})</p>
-<p>3rd: {{ third_product.title }} ({{ third_product.metafields.custom.your_metafield_key }})</p>
-
-<p>Product with the highest value: {{ highest_product.title }} ({{ highest_value }})</p>
+<p>1st: {{ first_product.title }} ({{ first_product.metafields.custom.total_like }})</p>
+<p>2nd: {{ second_product.title }} ({{ second_product.metafields.custom.total_like }})</p>
+<p>3rd: {{ third_product.title }} ({{ third_product.metafields.custom.total_like }})</p>
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
