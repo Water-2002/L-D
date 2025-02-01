@@ -202,7 +202,9 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
-
+  let current = document.querySelector('html').getAttribute('account')
+    
+  let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').value;
@@ -212,9 +214,6 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(content.trim())
     const now = new Date();
     const formattedDate = formatDateToISO(now);
-    let current = document.querySelector('html').getAttribute('account')
-    
-    let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
     createMetaObject('comment', [
         { key: "owner", value: user.id },
         { key: "content", value: content.trim() },
@@ -229,6 +228,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let totalLikes = document.querySelector('.total-like').getAttribute('data');
   console.log('totalLikes', totalLikes.split(",").length)
   document.querySelector('.total-like span').innerText = totalLikes.split(",").length;
+
+  let btnLike = document.querySelector('.btn-like')
+  
+  btnLike.addEventListener('click', () => {
+      let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
+      
+      await updateMetafield(productId, user.id)
+    
+  })
 });
 
 document.addEventListener("DOMContentLoaded", function () {
