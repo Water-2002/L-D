@@ -64,7 +64,7 @@
 {% assign products_sorted = "" %}
 
 {% for product in collections.all.products %}
-  {% assign metafield_value = product.metafields.custom.your_metafield_key | default: 0 %}
+  {% assign metafield_value = product.metafields.custom.total_like | default: 0 %}
 
   {% assign products_sorted = products_sorted | append: metafield_value | append: ":" | append: product.id | append: "," %}
 {% endfor %}
