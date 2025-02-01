@@ -203,8 +203,10 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
   let current = document.querySelector('html').getAttribute('account')
-    
-  let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
+  let user;
+  if (current) {
+   user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
+  }
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').value;
