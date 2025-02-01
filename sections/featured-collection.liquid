@@ -61,7 +61,7 @@
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
-{% assign sorted_products = collections.all.products | sort: "metafields.custom.total_like" %}
+{% assign sorted_products = collections.all.products | sort: "metafields.custom.total_like" | reverse %}
 
 {% assign first_product = sorted_products[0] %}
 {% assign second_product = sorted_products[1] %}
