@@ -200,7 +200,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 };
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   let sbBtn = document.querySelector('.btn-submit');
   let current = document.querySelector('html').getAttribute('account')
   let user;
