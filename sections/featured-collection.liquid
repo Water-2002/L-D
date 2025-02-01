@@ -61,15 +61,28 @@
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
-{% assign sorted_products = collections.all.products | sort: "metafields.custom.total_like" | reverse %}
+{% assign products_sorted = "" %}
 
-{% assign first_product = sorted_products[0] %}
-{% assign second_product = sorted_products[1] %}
-{% assign third_product = sorted_products[2] %}
+{% for product in collections.all.products %}
+  {% assign metafield_value = product.metafields.custom.your_metafield_key | default: 0 %}
 
-<p>1st: {{ first_product.title }} ({{ first_product.metafields.custom.total_like }})</p>
-<p>2nd: {{ second_product.title }} ({{ second_product.metafields.custom.total_like }})</p>
-<p>3rd: {{ third_product.title }} ({{ third_product.metafields.custom.total_like }})</p>
+  {% assign products_sorted = products_sorted | append: metafield_value | append: ":" | append: product.id | append: "," %}
+{% endfor %}
+
+{%- assign products_sorted = products_sorted | split: "," -%}
+{%- assign products_sorted = products_sorted | sort | reverse -%}
+
+{%- assign first = products_sorted[0] | split: ":" -%}
+{%- assign second = products_sorted[1] | split: ":" -%}
+{%- assign third = products_sorted[2] | split: ":" -%}
+
+{% assign first_product = all_products[first[1]] %}
+{% assign second_product = all_products[second[1]] %}
+{% assign third_product = all_products[third[1]] %}
+
+<p>1st: {{ first_product.title }} ({{ first[0] }})</p>
+<p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
+<p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
