@@ -214,7 +214,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let current = document.querySelector('html').getAttribute('account')
     
     let user = current != 'none' ? await fetchMetaObject(current.toLowerCase(), 'author') : null;
-    console.log(user.id)
     createMetaObject('comment', [
         { key: "owner", value: user.id },
         { key: "content", value: content.trim() },
