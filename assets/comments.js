@@ -202,6 +202,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   let sbBtn = document.querySelector('.btn-submit');
+
   sbBtn.addEventListener('click', async () => {
     let productId = `gid://shopify/Product/${sbBtn.getAttribute('product-id')}`;
     let content = document.querySelector('.comment-content').value;
@@ -223,9 +224,10 @@ document.addEventListener("DOMContentLoaded", function () {
         await activeMetaObject(metaobject.id);
         await updateMetafield(productId, metaobject.id)
       });
-
-    
   })
+
+  let totalLikes = document.querySelector('.total-like').getAttribute('data');
+  console.log('totalLikes', totalLikes)
 });
 
 document.addEventListener("DOMContentLoaded", function () {
