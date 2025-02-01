@@ -120,7 +120,7 @@ const activeMetaObject = async (metaObjectId) => {
     return result.data.metaobjectCreate.metaobject;
 };
 
-const updateMetafield = async (productId, newMetaObjectId) => {
+const updateMetafield = async (productId, newMetaObjectId, key) => {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
 
   const getMetafieldQuery = `
@@ -159,7 +159,7 @@ const updateMetafield = async (productId, newMetaObjectId) => {
           {
             ownerId: "${productId}",
             namespace: "custom",
-            key: "comments",
+            key: "${key}",
             type: "list.metaobject_reference",
             value: ${JSON.stringify(JSON.stringify(updatedValue))}
           }
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       ]).then(async (metaobject) => {
         console.log('metaobject', metaobject)
         await activeMetaObject(metaobject.id);
-        await updateMetafield(productId, metaobject.id)
+        await updateMetafield(productId, metaobject.id, 'comments')
       });
   })
 
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   btnLike.addEventListener('click', async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
-      await updateMetafield(productId, user.id)
+      await updateMetafield(productId, user.id, 'author')
     
   })
 });
