@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let btnLike = document.querySelector('.btn-like')
   
-  btnLike.addEventListener('click', () => {
+  btnLike.addEventListener('click', async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       
       await updateMetafield(productId, user.id)
