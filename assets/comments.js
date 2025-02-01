@@ -227,7 +227,8 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   let totalLikes = document.querySelector('.total-like').getAttribute('data');
-  console.log('totalLikes', totalLikes.split(",").length - 1)
+  console.log('totalLikes', totalLikes.split(",").length)
+  document.querySelector('.total-like span').innerText = totalLikes.split(",").length;
 });
 
 document.addEventListener("DOMContentLoaded", function () {
