@@ -706,7 +706,7 @@
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
-    <div class="total-like" data="{{ product.metafields.custom.likes | string }}">
+    <div class="total-like" data='{{ product.metafields.custom.likes }}'>
       <span></span>
     </div>
     <div class="submit-comment" product-id="{{ product.id }}">
