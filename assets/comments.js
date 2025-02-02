@@ -199,6 +199,78 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
     return result.data.metafieldSet;
 };
 
+async function updateMetafieldInteger(productId, key) {
+  // Step 1: Fetch the existing metafield value
+  const query = {
+    query: `
+      query {
+        product(id: "${productId}") {
+          metafield(namespace: "custom", key: "${key}") {
+            id
+            value
+          }
+        }
+      }
+    `,
+  };
+
+  let response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": accessToken,
+    },
+    body: JSON.stringify(query),
+  });
+
+  let result = await response.json();
+  let metafield = result.data.product.metafield;
+  if (!metafield) {
+    console.log("Metafield not found!");
+    return;
+  }
+
+  let newValue = parseInt(metafield.value, 10) + 1; // Increment value
+
+  // Step 2: Update metafield with new value
+  const mutation = {
+    query: `
+      mutation {
+        metafieldsSet(
+          metafields: [
+            {
+              id: "${metafield.id}"
+              value: "${newValue}"
+              type: "integer"
+            }
+          ]
+        ) {
+          metafields {
+            id
+            value
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }
+    `,
+  };
+
+  response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": accessToken,
+    },
+    body: JSON.stringify(mutation),
+  });
+
+  result = await response.json();
+  console.log("Updated metafield:", result);
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   let sbBtn = document.querySelector('.btn-submit');
@@ -233,7 +305,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
       await updateMetafield(productId, user.id, 'likes')
-    
+      await updateMetafieldInteger(productId, 'total_like')
   })
 });
 
