@@ -183,6 +183,11 @@
   {% endfor %}
   
   <p>1st: {{ first_product.title }} ({{ first[0] }})</p>
+        <div>
+          <span>1</span>
+          <p>{{ first_product.title }} </p>
+          Likes: {{ first_product.metafields.custom.total_like }}
+        </div>
   <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
   <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
       </div>
