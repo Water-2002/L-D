@@ -166,30 +166,6 @@
         {% assign third_product = null %}
         
         <!-- Debugging Output -->
-        <pre>
-        first[1] = "{{ first[1] }}"
-        second[1] = "{{ second[1] }}"
-        third[1] = "{{ third[1] }}"
-        </pre>
-        
-        {% for product in collections.all.products %}
-          {% assign product_id_string = product.id | append: "" %}
-          {% assign first_id_string = first[1] | strip %}
-          {% assign second_id_string = second[1] | strip %}
-          {% assign third_id_string = third[1] | strip %}
-        
-          <!-- Debugging Output -->
-          <pre>Checking product ID: {{ product_id_string }}</pre>
-        
-          {% if product_id_string == first_id_string %}
-            {% assign first_product = product %}
-          {% elsif product_id_string == second_id_string %}
-            {% assign second_product = product %}
-          {% elsif product_id_string == third_id_string %}
-            {% assign third_product = product %}
-          {% endif %}
-        {% endfor %}
-        
         <p>1st: {{ first_product.title }} ({{ first[0] }})</p>
         <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
         <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
