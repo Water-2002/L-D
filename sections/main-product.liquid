@@ -708,7 +708,7 @@
     {% render 'product-media-modal', variant_images: variant_images %}
     <div style="display: flex; gap: 20px;">
       <div class="total-like">
-        <button class="btn-like" product-id="{{ product.id }}">
+        <button class="btn-like" product-id="{{ product.id }}" style="cursor: pointer;">
           {{- 'icon-like.svg' | inline_asset_content -}}
           
         <span>{{ product.metafields.custom.total_like }}</span>
@@ -721,7 +721,7 @@
         <textarea rows="6" class="comment-content" style="width: 100%;">
           
         </textarea>
-        <button class="btn-submit" product-id="{{ product.id }}" style="background-color: #2d6ff7;color: #fff; padding: 4px 10px; border: none; border-radius: 6px;">Comment</button>
+        <button class="btn-submit" product-id="{{ product.id }}" style="background-color: #2d6ff7;color: #fff; padding: 4px 10px; border: none; border-radius: 6px; cursor: pointer;">Comment</button>
       </div>
     </div>
 
