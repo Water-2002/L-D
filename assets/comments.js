@@ -152,6 +152,11 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
 
     const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
     const updatedValue = [...existingValue, newMetaObjectId];
+    for (let i = 0 ; i < existingValue ; i++) {
+      if (existingValue == newMetaObjectId) {
+        return false;
+      }
+    }
     console.log(updatedValue)
      const updateMutation = `
       mutation {
@@ -281,9 +286,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   btnLike.addEventListener('click', async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
-      await updateMetafield(productId, user.id, 'likes')
-      let number = document.querySelector('.total-like span').textContent;
-      await updateMetafieldInteger(productId, 'total_like', +number + 1)
+      let rs = await updateMetafield(productId, user.id, 'likes')
+      if (rs) {
+        let number = document.querySelector('.total-like span').textContent;
+        await updateMetafieldInteger(productId, 'total_like', +number + 1)
+      }
   })
 });
 
