@@ -225,6 +225,7 @@ async function updateMetafieldInteger(productId, key) {
 
   let result = await response.json();
   let metafield = result.data.product.metafield;
+  console.log('metafield', metafield)
   if (!metafield) {
     console.log("Metafield not found!");
     return;
