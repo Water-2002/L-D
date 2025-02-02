@@ -61,7 +61,8 @@
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
-{% assign products_sorted = "" %}
+<div>
+  {% assign products_sorted = "" %}
 
 {% for product in collections.all.products %}
   {% assign metafield_value = product.metafields.custom.total_like | default: 0 %}
@@ -83,6 +84,7 @@
 <p>1st: {{ first_product.title }} ({{ first[0] }})</p>
 <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
 <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
+</div>
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
