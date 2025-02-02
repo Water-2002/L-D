@@ -233,7 +233,9 @@ const isActiveButton = async (productId, newMetaObjectId, key) => {
       console.error('Error retrieving Metafield:', getResult.errors);
       return null;
     }
-
+    if (!getResult.data.product.metafield.value) {
+      return false;
+    }
     const existingValue = getResult.data.product?.metafield.value || [];
     const updatedValue = [...existingValue, newMetaObjectId];
     for (let i = 0 ; i < existingValue ; i++) {
