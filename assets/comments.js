@@ -201,7 +201,7 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
     }
 
     console.log('Updated Metafield:', result.data);
-    return result.data.metafieldSet;
+    return true;
 };
 
 const isActiveButton = async (productId, newMetaObjectId, key) => {
