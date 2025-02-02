@@ -3659,3 +3659,7 @@ display: flex;
     border-radius: 14px;
     border: none;
 }
+
+.custom-feature-page {
+  display: flex;
+}
