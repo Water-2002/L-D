@@ -323,8 +323,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   let btnLike = document.querySelector('.btn-like')
   
   let isActiveLike = await isActiveButton(`gid://shopify/Product/${btnLike.getAttribute('product-id')}`, user.id, 'likes');
-
-  if (isActiveButton) {
+  console.log(isActiveLike)
+  if (isActiveLike) {
     btnLike.setAttribute('active', true)
   }
 
