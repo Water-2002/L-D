@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log('user', user.id)
       let rs = await updateMetafield(productId, user.id, 'likes')
       if (rs) {
-        let number = document.querySelector('.total-like span').textContent;
+        let number = document.querySelector('.total-like span').textContent || 0;
         await updateMetafieldInteger(productId, 'total_like', +number + 1)
       }
   })
