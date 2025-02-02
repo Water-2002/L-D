@@ -725,7 +725,7 @@
         <button class="btn-submit" product-id="{{ product.id }}" style="background-color: #2d6ff7;color: #fff; padding: 4px 10px; border: none; border-radius: 6px; cursor: pointer;">Comment</button>
       </div>
     </div>
-
+{% endif %}
     <div class="comments">
         {% assign comments = product.metafields.custom.comments.value %}
         {% for comment in comments %}  
@@ -747,7 +747,6 @@
   	      
         {% endfor %}
     </div>
-    {% endif %}
     {% assign popups = section.blocks | where: 'type', 'popup' %}
     {%- for block in popups -%}
       <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
