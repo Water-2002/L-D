@@ -166,7 +166,7 @@
         {% assign second_product = all_products[second[1]] %}
         {% assign third_product = all_products[third[1]] %}
         
-        <p>1st: {{ all_products | json }} ({{ first[0] }})</p>
+        <p>1st: {{ first[1] }} ({{ first[0] }})</p>
         <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
         <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
       </div>
