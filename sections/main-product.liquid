@@ -706,11 +706,11 @@
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
-    <div class="total-like" data='{{ product.metafields.custom.likes }}'>
+    <div class="total-like">
       <button class="btn-like" product-id="{{ product.id }}">
         {{- 'icon-like.svg' | inline_asset_content -}}
         
-      <span></span>
+      <span>{{ product.metafields.custom.total_like }}</span>
       </button>
     </div>
     <div class="submit-comment" product-id="{{ product.id }}">
