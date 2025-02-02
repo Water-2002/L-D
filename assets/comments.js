@@ -199,50 +199,24 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
     return result.data.metafieldSet;
 };
 
-async function updateMetafieldInteger(productId, key) {
-  const query = `
-      query {
-        product(id: "${productId}") {
-          metafield(namespace: "custom", key: "${key}") {
-            id
-            value
-          }
-        }
-      }
-    `;
+async function updateMetafieldInteger(productId, key, newValue) {
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
   
-  let response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Access-Token": accessToken,
-    },
-    body: JSON.stringify(query),
-  });
-
-  let result = await response.json();
-  let metafield = result.data.product.metafield;
-  console.log('metafield', metafield)
-  if (!metafield) {
-    console.log("Metafield not found!");
-    return;
-  }
-
-  let newValue = parseInt(metafield.value, 10) + 1; // Increment value
-
-  const mutation = `
+ const updateMutation = `
       mutation {
-        metafieldsSet(
-          metafields: [
-            {
-              id: "${metafield.id}"
-              value: "${newValue}"
-              type: "integer"
-            }
-          ]
-        ) {
+        metafieldsSet(metafields: [
+          {
+            ownerId: "${productId}",
+            namespace: "custom",
+            key: "${key}",
+            type: "integer",
+            value: ${newValue},
+          }
+        ]) {
           metafields {
             id
+            namespace
+            key
             value
           }
           userErrors {
@@ -253,17 +227,25 @@ async function updateMetafieldInteger(productId, key) {
       }
     `;
 
-  response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Access-Token": accessToken,
-    },
-    body: JSON.stringify(mutation),
-  });
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Shopify-Access-Token': accessToken,
+      },
+      body: JSON.stringify({ query: updateMutation }),
+    });
 
-  result = await response.json();
-  console.log("Updated metafield:", result);
+    const result = await response.json();
+
+    if (result.errors) {
+      console.error('Error updating Metafield:', result.errors || result.data.metafieldSet.userErrors);
+      return null;
+    }
+
+    console.log('Updated Metafield:', result.data);
+    return result.data.metafieldSet;
 }
 
 
@@ -300,7 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
       await updateMetafield(productId, user.id, 'likes')
-      await updateMetafieldInteger(productId, 'total_like')
+      await updateMetafieldInteger(productId, 'total_like', 4)
   })
 });
 
