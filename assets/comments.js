@@ -234,8 +234,9 @@ const isActiveButton = async (productId, newMetaObjectId, key) => {
       return false;
     }
     const existingValue = getResult.data.product.metafield ? getResult.data.product.metafield.value : [];
-    console.log('existingValue', existingValue)
+    console.log('newMetaObjectId', newMetaObjectId)
     for (let i = 0 ; i < existingValue ; i++) {
+      console.log(existingValue[i])
       if (existingValue[i] == newMetaObjectId) {
         return true;
       }
