@@ -162,11 +162,11 @@
         {%- assign second = products_sorted[1] | split: ":" -%}
         {%- assign third = products_sorted[2] | split: ":" -%}
         
-        {% assign first_product = collections.all.products[first[1]] %}
-        {% assign second_product = collections.all.products[second[1]] %}
-        {% assign third_product = collections.all.products[third[1]] %}
+        {% assign first_product = all_products[first[1]] %}
+        {% assign second_product = all_products[second[1]] %}
+        {% assign third_product = all_products[third[1]] %}
         
-        <p>1st: {{ first_product }} ({{ first[0] }})</p>
+        <p>1st: {{ all_products }} ({{ first[0] }})</p>
         <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
         <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
       </div>
