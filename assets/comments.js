@@ -333,7 +333,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
       let rs = await updateMetafield(productId, user.id, 'likes')
-      if (rs) {
+      console.log(rs)
+      if (!rs) {
+        return false
+      } else {
         let number = document.querySelector('.total-like span').textContent || 0;
         await updateMetafieldInteger(productId, 'total_like', +number + 1)
       }
