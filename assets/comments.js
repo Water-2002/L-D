@@ -209,7 +209,7 @@ async function updateMetafieldInteger(productId, key, newValue) {
             ownerId: "${productId}",
             namespace: "custom",
             key: "${key}",
-            type: "integer",
+            type: "number_integer",
             value: "${newValue}",
           }
         ]) {
