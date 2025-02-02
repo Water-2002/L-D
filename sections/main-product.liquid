@@ -708,7 +708,8 @@
     {% render 'product-media-modal', variant_images: variant_images %}
     <div class="total-like" data='{{ product.metafields.custom.likes }}'>
       <button class="btn-like" product-id="{{ product.id }}">
-        {{ 'icon-like.svg' }}
+            {{- 'icon-like.svg' | inline_asset_content -}}
+        
       <span></span>
       </button>
     </div>
