@@ -227,15 +227,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   })
 
-  let totalLikes = document.querySelector('.total-like').getAttribute('data');
-  console.log('totalLikes', totalLikes.split(",").length)
-  document.querySelector('.total-like span').innerText = totalLikes.split(",").length;
-
   let btnLike = document.querySelector('.btn-like')
   
   btnLike.addEventListener('click', async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
-      console.log('user', productId)
+      console.log('user', user.id)
       await updateMetafield(productId, user.id, 'likes')
     
   })
