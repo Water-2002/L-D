@@ -164,7 +164,7 @@
         {% assign first_product = null %}
         {% assign second_product = null %}
         {% assign third_product = null %}
-        
+        {{ first[1] }}
         {% for product in collections.all.products %}
           {{ product.id }}
           {% if product.id == first[1] %}
