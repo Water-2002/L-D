@@ -706,18 +706,20 @@
     </div>
 
     {% render 'product-media-modal', variant_images: variant_images %}
-    <div class="total-like">
-      <button class="btn-like" product-id="{{ product.id }}">
-        {{- 'icon-like.svg' | inline_asset_content -}}
-        
-      <span>{{ product.metafields.custom.total_like }}</span>
-      </button>
-    </div>
-    <div class="submit-comment" product-id="{{ product.id }}">
-      <textarea rows="4" class="comment-content">
-        
-      </textarea>
-      <button class="btn-submit" product-id="{{ product.id }}">Comment</button>
+    <div>
+      <div class="total-like">
+        <button class="btn-like" product-id="{{ product.id }}">
+          {{- 'icon-like.svg' | inline_asset_content -}}
+          
+        <span>{{ product.metafields.custom.total_like }}</span>
+        </button>
+      </div>
+      <div class="submit-comment" product-id="{{ product.id }}">
+        <textarea rows="4" class="comment-content">
+          
+        </textarea>
+        <button class="btn-submit" product-id="{{ product.id }}">Comment</button>
+      </div>
     </div>
 
     <div class="comments">
