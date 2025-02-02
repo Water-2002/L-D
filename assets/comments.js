@@ -200,9 +200,7 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
 };
 
 async function updateMetafieldInteger(productId, key) {
-  // Step 1: Fetch the existing metafield value
-  const query = {
-    query: `
+  const query = `
       query {
         product(id: "${productId}") {
           metafield(namespace: "custom", key: "${key}") {
@@ -211,9 +209,8 @@ async function updateMetafieldInteger(productId, key) {
           }
         }
       }
-    `,
-  };
-
+    `;
+  
   let response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
     method: "POST",
     headers: {
@@ -233,9 +230,7 @@ async function updateMetafieldInteger(productId, key) {
 
   let newValue = parseInt(metafield.value, 10) + 1; // Increment value
 
-  // Step 2: Update metafield with new value
-  const mutation = {
-    query: `
+  const mutation = `
       mutation {
         metafieldsSet(
           metafields: [
@@ -256,8 +251,7 @@ async function updateMetafieldInteger(productId, key) {
           }
         }
       }
-    `,
-  };
+    `;
 
   response = await fetch(`https://${storeName}/admin/api/2024-01/graphql.json`, {
     method: "POST",
