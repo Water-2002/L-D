@@ -3660,6 +3660,15 @@ display: flex;
     border: none;
 }
 
+.btn-like[active] {
+  background-color: #2d6ff7;
+  color: #fff;
+}
+
+.btn-like[active] g {
+  fill: #fff;
+}
+
 .custom-slider {
   display: grid;
   grid-template-columns: 3fr 1fr;
