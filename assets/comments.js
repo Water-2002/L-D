@@ -231,10 +231,10 @@ const isActiveButton = async (productId, newMetaObjectId, key) => {
     const getResult = await getResponse.json();
     if (getResult.errors) {
       console.error('Error retrieving Metafield:', getResult.errors);
-      return null;
+      return false;
     }
     const existingValue = getResult.data.product.metafield ? getResult.data.product.metafield.value : [];
-    const updatedValue = [...existingValue, newMetaObjectId];
+    console.log('existingValue', existingValue)
     for (let i = 0 ; i < existingValue ; i++) {
       if (existingValue[i] == newMetaObjectId) {
         return true;
