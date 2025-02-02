@@ -167,7 +167,7 @@
         
         {% for product in collections.all.products %}
           {% if product.id == first[1] %}
-            {% assign first_product = product %}
+            <p>1st: {{ product.title }} ({{ first[0] }})</p>
           {% elsif product.id == second[1] %}
             {% assign second_product = product %}
           {% elsif product.id == third[1] %}
@@ -175,7 +175,6 @@
           {% endif %}
         {% endfor %}
         
-        <p>1st: {{ first_product.title }} ({{ first[0] }})</p>
         <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
         <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
       </div>
