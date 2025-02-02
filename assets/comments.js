@@ -204,6 +204,46 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
     return result.data.metafieldSet;
 };
 
+const isActiveButton = async (productId, newMetaObjectId, key) => {
+  const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
+
+  const getMetafieldQuery = `
+      query {
+        product(id: "${productId}") {
+          metafield(namespace: "custom", key: "${key}") {
+            id
+            value
+          }
+        }
+      }
+    `;
+
+    const getResponse = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Shopify-Access-Token': accessToken,
+      },
+      body: JSON.stringify({ query: getMetafieldQuery }),
+    });
+
+    const getResult = await getResponse.json();
+    if (getResult.errors) {
+      console.error('Error retrieving Metafield:', getResult.errors);
+      return null;
+    }
+
+    const existingValue = JSON.parse(getResult.data.product.metafield.value || "[]");
+    const updatedValue = [...existingValue, newMetaObjectId];
+    for (let i = 0 ; i < existingValue ; i++) {
+      if (existingValue == newMetaObjectId) {
+        return true;
+      }
+    }
+    return false;
+};
+
 async function updateMetafieldInteger(productId, key, newValue) {
   const endpoint = `https://${storeName}.myshopify.com/admin/api/2025-01/graphql.json`;
   
@@ -283,6 +323,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let btnLike = document.querySelector('.btn-like')
   
+  let isActiveLike = await isActiveButton(`gid://shopify/Product/${btnLike.getAttribute('product-id')}`, user.id, 'likes');
+
+  if (isActiveButton) {
+    btnLike.setAttribute('active', true)
+  }
+
   btnLike.addEventListener('click', async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
