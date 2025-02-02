@@ -126,7 +126,7 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
   const getMetafieldQuery = `
       query {
         product(id: "${productId}") {
-          metafield(namespace: "custom", key: "comments") {
+          metafield(namespace: "custom", key: "${key}") {
             id
             value
           }
