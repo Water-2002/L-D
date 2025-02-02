@@ -197,15 +197,14 @@
           <p style="margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;">{{ first_product.title }} </p>
           </div>
           <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 20px; margin-top: 4px;     margin-bottom: 12px;">
-            <p class="name-owner" style="font-size: 12px;">{{ first_product.metafields.custom.owner.value.name }}</p>
+            <p class="name-owner" style="font-size: 12px;" href-url="{{ first_product.url }}">{{ first_product.metafields.custom.owner.value.name }}</p>
             
             <div style="font-size: 12px;     background-color: #2d6ff7;
-    padding: 2px 8px;
-    border-radius: 10px;
-    display: flex
-;
-    align-items: center;
-    gap: 4px; color: #fff;"> 
+              padding: 2px 8px;
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              gap: 4px; color: #fff;"> 
               <svg width="12px" height="12px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g id="Dribbble-Light-Preview" transform="translate(-259.000000, -760.000000)" fill="#fff">
