@@ -153,7 +153,7 @@ const updateMetafield = async (productId, newMetaObjectId, key) => {
         const existingValue = getResult.data.product.metafield ? JSON.parse(getResult.data.product.metafield.value || "[]") : [];
     const updatedValue = [...existingValue, newMetaObjectId];
     for (let i = 0 ; i < existingValue.length ; i++) {
-      if ([existingValue[i] == newMetaObjectId) {
+      if (existingValue[i] == newMetaObjectId) {
         return false;
       }
     }
