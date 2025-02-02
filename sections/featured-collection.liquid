@@ -219,9 +219,77 @@
               {{ first_product.metafields.custom.total_like }}
             </div>
           </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="min-width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;">1</span>
+          <p style="margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;">{{ first_product.title }} </p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 20px; margin-top: 4px;">
+            <p class="name-owner" style="font-size: 12px;">{{ first_product.metafields.custom.owner.value.name }}</p>
+            
+            <div style="font-size: 12px;     background-color: #2d6ff7;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: flex
+;
+    align-items: center;
+    gap: 4px; color: #fff;"> 
+              <svg width="12px" height="12px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-259.000000, -760.000000)" fill="#fff">
+                        <g id="icons" transform="translate(56.000000, 160.000000)">
+                            <path d="M203,620 L207.200006,620 L207.200006,608 L203,608 L203,620 Z M223.924431,611.355 L222.100579,617.89 C221.799228,619.131 220.638976,620 219.302324,620 L209.300009,620 L209.300009,608.021 L211.104962,601.825 C211.274012,600.775 212.223214,600 213.339366,600 C214.587817,600 215.600019,600.964 215.600019,602.153 L215.600019,608 L221.126177,608 C222.97313,608 224.340232,609.641 223.924431,611.355 L223.924431,611.355 Z" id="like-[#1385]">
+                            </path>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+              {{ first_product.metafields.custom.total_like }}
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="min-width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;">1</span>
+          <p style="margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;">{{ first_product.title }} </p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-left: 20px; margin-top: 4px;">
+            <p class="name-owner" style="font-size: 12px;">{{ first_product.metafields.custom.owner.value.name }}</p>
+            
+            <div style="font-size: 12px;     background-color: #2d6ff7;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: flex
+;
+    align-items: center;
+    gap: 4px; color: #fff;"> 
+              <svg width="12px" height="12px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-259.000000, -760.000000)" fill="#fff">
+                        <g id="icons" transform="translate(56.000000, 160.000000)">
+                            <path d="M203,620 L207.200006,620 L207.200006,608 L203,608 L203,620 Z M223.924431,611.355 L222.100579,617.89 C221.799228,619.131 220.638976,620 219.302324,620 L209.300009,620 L209.300009,608.021 L211.104962,601.825 C211.274012,600.775 212.223214,600 213.339366,600 C214.587817,600 215.600019,600.964 215.600019,602.153 L215.600019,608 L221.126177,608 C222.97313,608 224.340232,609.641 223.924431,611.355 L223.924431,611.355 Z" id="like-[#1385]">
+                            </path>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+              {{ first_product.metafields.custom.total_like }}
+            </div>
+          </div>
         </div>
-  <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
-  <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
       </div>
       {%- if show_mobile_slider or show_desktop_slider -%}
         <div class="slider-buttons">
