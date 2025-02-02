@@ -66,30 +66,6 @@
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
-    <div>
-      {% assign products_sorted = "" %}
-    
-    {% for product in collections.all.products %}
-      {% assign metafield_value = product.metafields.custom.total_like | default: 0 %}
-    
-      {% assign products_sorted = products_sorted | append: metafield_value | append: ":" | append: product.id | append: "," %}
-    {% endfor %}
-    
-    {%- assign products_sorted = products_sorted | split: "," -%}
-    {%- assign products_sorted = products_sorted | sort | reverse -%}
-    
-    {%- assign first = products_sorted[0] | split: ":" -%}
-    {%- assign second = products_sorted[1] | split: ":" -%}
-    {%- assign third = products_sorted[2] | split: ":" -%}
-    
-    {% assign first_product = all_products[first[1]] %}
-    {% assign second_product = all_products[second[1]] %}
-    {% assign third_product = all_products[third[1]] %}
-    
-    <p>1st: {{ first_product.title }} ({{ first[0] }})</p>
-    <p>2nd: {{ second_product.title }} ({{ second[0] }})</p>
-    <p>3rd: {{ third_product.title }} ({{ third[0] }})</p>
-  </div>
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
