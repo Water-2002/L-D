@@ -3677,3 +3677,45 @@ display: flex;
 p:empty {
   display: block;
 }
+
+.container-comment {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .like-btn, .submit-btn {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        .like-btn:hover, .submit-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+        .comment-box {
+            flex-grow: 1;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            resize: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
