@@ -727,7 +727,7 @@
 
       <div class="container-comment">
         <div class="like-section">
-            <span class="like-count">{{ product.metafields.custom.total_like }} Likes</span>
+            <span class="like-count">{% if product.metafields.custom.total_like %} {{ product.metafields.custom.total_like }} {% else %} 0 {% endif %} Likes</span>
             <button class="like-btn btn-like" product-id="{{ product.id }}">👍 Like</button>
         </div>
         <div class="comment-box submit-comment">
