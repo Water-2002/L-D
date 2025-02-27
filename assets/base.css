@@ -3679,14 +3679,17 @@ p:empty {
 }
 
 .container-comment {
-            background: #ffffff;
             padding: 15px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             width: auto;
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+       .like-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .like-btn, .submit-btn {
             background: linear-gradient(45deg, #007bff, #0056b3);
@@ -3702,6 +3705,10 @@ p:empty {
         .like-btn:hover, .submit-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+        .like-count {
+            font-size: 16px;
+            color: #007bff;
         }
         .comment-box {
             flex-grow: 1;
