@@ -3712,6 +3712,7 @@ p:empty {
         }
         .comment-box {
             flex-grow: 1;
+            display: flex;
         }
         textarea {
             width: 100%;
