@@ -708,7 +708,7 @@
     {% render 'product-media-modal', variant_images: variant_images %}
     {% if customer %}
     <div style="display: flex; gap: 20px; margin-top: 20px;">
-      <div class="total-like">
+      <!-- <div class="total-like">
         <button class="btn-like" product-id="{{ product.id }}" style="cursor: pointer;">
           {{- 'icon-like.svg' | inline_asset_content -}}
           
@@ -724,6 +724,17 @@
         </textarea>
         <button class="btn-submit" product-id="{{ product.id }}" style="background-color: #2d6ff7;color: #fff; padding: 4px 10px; border: none; border-radius: 6px; cursor: pointer;">Comment</button>
       </div>
+    </div> -->
+
+      <div class="container-comment">
+        <div class="like-section">
+            <button class="like-btn btn-like" product-id="{{ product.id }}" style="cursor: pointer;">👍 Like</button>
+            <span class="like-count">{{ product.metafields.custom.total_like }} Likes</span>
+        </div>
+        <div class="comment-box submit-comment">
+            <textarea rows="1" class="comment-content" placeholder="Write a comment..."></textarea>
+        </div>
+        <button class="btn-submit" product-id="{{ product.id }}">Submit</button>
     </div>
 {% endif %}
     <div class="comments">
