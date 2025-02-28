@@ -3689,7 +3689,7 @@ p:empty {
        .like-section {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 15px;
         }
         .like-btn, .submit-btn {
             background: linear-gradient(45deg, #007bff, #0056b3);
