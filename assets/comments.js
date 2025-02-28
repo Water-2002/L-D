@@ -333,6 +333,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let productId = `gid://shopify/Product/${btnLike.getAttribute('product-id')}`;
       console.log('user', user.id)
       let rs = await updateMetafield(productId, user.id, 'likes')
+      console.log(productId, user.id)
       console.log(rs)
       if (!rs) {
         return false
