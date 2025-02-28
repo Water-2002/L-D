@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!rs) {
         return false
       } else {
-        let number = document.querySelector('.total-like span').textContent || 0;
+        let number = document.querySelector('.total-like').textContent || 0;
         await updateMetafieldInteger(productId, 'total_like', +number + 1)
       }
   })
