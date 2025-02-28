@@ -3684,7 +3684,6 @@ p:empty {
             width: auto;
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 10px;
         }
        .like-section {
