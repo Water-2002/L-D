@@ -730,10 +730,12 @@
             <span class="like-count total-like">{% if product.metafields.custom.total_like %} {{ product.metafields.custom.total_like }} {% else %} <span>0</span> {% endif %} Likes</span>
             <button class="like-btn btn-like" product-id="{{ product.id }}">👍 Like</button>
         </div>
-        <div class="comment-box submit-comment">
-            <textarea rows="1" class="comment-content" placeholder="Write a comment..."></textarea>
+        <div>
+          <div class="comment-box submit-comment">
+              <textarea rows="1" class="comment-content" placeholder="Write a comment..."></textarea>
+          </div>
+          <button class="btn-submit submit-btn" product-id="{{ product.id }}">Submit</button>
         </div>
-        <button class="btn-submit submit-btn" product-id="{{ product.id }}">Submit</button>
     </div>
 {% endif %}
     <div class="comments">
