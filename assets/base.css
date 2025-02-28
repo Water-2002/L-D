@@ -3683,6 +3683,7 @@ p:empty {
             border-radius: 12px;
             width: auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 10px;
         }
