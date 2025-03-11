@@ -1,6 +1,398 @@
+<header class="pagefly-support-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="{{ 'pagefly-logo.png' | asset_url }}" alt="PageFly Logo" class="pagefly-logo">
+      </div>
+      <h1>{{ section.settings.page_title }}</h1>
+      <p class="header-subtitle">{{ section.settings.page_subtitle }}</p>
+    </div>
+    
+    <div class="search-container">
+      <form action="/search" method="get" class="search-form">
+        <input type="hidden" name="type" value="article">
+        <input type="hidden" name="options[prefix]" value="last">
+        <input type="search" name="q" placeholder="Search for tips..." class="search-input">
+        <button type="submit" class="search-button">
+          <span class="search-icon">{% render 'icon-search' %}</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="pagefly-support-main container">
+  <div class="tip-categories">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          <div class="category-card" id="{{ block.settings.category_id }}">
+            <div class="category-icon">
+              {% if block.settings.icon != blank %}
+                <img src="{{ block.settings.icon | img_url: '100x100' }}" alt="{{ block.settings.title }}">
+              {% else %}
+                <span class="default-icon">{% render 'icon-' | append: block.settings.default_icon %}</span>
+              {% endif %}
+            </div>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+            <a href="#{{ block.settings.category_id }}-tips" class="view-tips-btn">View Tips</a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="featured-tip">
+    <h2>Featured Tip</h2>
+    <div class="featured-tip-content">
+      <h3>{{ section.settings.featured_tip_title }}</h3>
+      <div class="featured-tip-body">
+        {{ section.settings.featured_tip_content }}
+      </div>
+    </div>
+  </div>
+
+  {% for block in section.blocks %}
+    {% if block.type == 'category' %}
+      <div class="tips-section" id="{{ block.settings.category_id }}-tips">
+        <h2>{{ block.settings.title }} Tips</h2>
+        
+        <div class="tips-accordion">
+          
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="contact-support">
+    <h2>Still Need Help?</h2>
+    <p>Our support team is ready to assist you with any questions or issues you might have.</p>
+    <div class="support-options">
+      <a href="{{ section.settings.contact_url }}" class="support-btn primary-btn">Contact Support</a>
+      <a href="{{ section.settings.docs_url }}" class="support-btn secondary-btn">Documentation</a>
+    </div>
+  </div>
+</div>
+
+<footer class="pagefly-support-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="{{ 'pagefly-logo.png' | asset_url }}" alt="PageFly Logo" class="footer-logo-img">
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="{{ section.settings.docs_url }}">Documentation</a></li>
+          <li><a href="{{ section.settings.blog_url }}">Blog</a></li>
+          <li><a href="{{ section.settings.tutorials_url }}">Video Tutorials</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="{{ section.settings.contact_url }}">Contact Us</a></li>
+          <li><a href="{{ section.settings.faq_url }}">FAQ</a></li>
+          <li><a href="{{ section.settings.community_url }}">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Subscribe to our newsletter for the latest tips and updates</p>
+        <form action="{{ section.settings.newsletter_action }}" method="post" class="newsletter-form">
+          <input type="email" name="contact[email]" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} PageFly. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "PageFly Support Tips",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "PageFly Technical Support"
+    },
+    {
+      "type": "text",
+      "id": "page_subtitle",
+      "label": "Page Subtitle",
+      "default": "Tips & Solutions to Common Issues"
+    },
+    {
+      "type": "text",
+      "id": "featured_tip_title",
+      "label": "Featured Tip Title",
+      "default": "How to Optimize Your PageFly Pages for Mobile"
+    },
+    {
+      "type": "richtext",
+      "id": "featured_tip_content",
+      "label": "Featured Tip Content",
+      "default": "<p>Make sure to use responsive settings for all elements and test your page on multiple device sizes before publishing.</p>"
+    },
+    {
+      "type": "text",
+      "id": "contact_url",
+      "label": "Contact Support URL",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "text",
+      "id": "docs_url",
+      "label": "Documentation URL",
+      "default": "/pages/documentation"
+    },
+    {
+      "type": "text",
+      "id": "blog_url",
+      "label": "Blog URL",
+      "default": "/blogs/news"
+    },
+    {
+      "type": "text",
+      "id": "tutorials_url",
+      "label": "Tutorials URL",
+      "default": "/pages/tutorials"
+    },
+    {
+      "type": "text",
+      "id": "faq_url",
+      "label": "FAQ URL",
+      "default": "/pages/faq"
+    },
+    {
+      "type": "text",
+      "id": "community_url",
+      "label": "Community URL",
+      "default": "/pages/community"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_action",
+      "label": "Newsletter Form Action",
+      "default": "/contact#newsletter"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Tip Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_id",
+          "label": "Category ID",
+          "default": "getting-started"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Getting Started"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Category Description",
+          "default": "Tips for new PageFly users"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Category Icon"
+        },
+        {
+          "type": "text",
+          "id": "default_icon",
+          "label": "Default Icon Name",
+          "default": "star",
+          "info": "Used if no custom icon is uploaded"
+        }
+      ]
+    },
+    {
+      "type": "tip",
+      "name": "Support Tip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_id",
+          "label": "Category ID",
+          "info": "Must match a category ID"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tip Title",
+          "default": "How to create your first page"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tip Content",
+          "default": "<p>Step by step instructions for creating your first page with PageFly.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Tip Image"
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "YouTube or Vimeo embed URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PageFly Support Tips",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "category_id": "getting-started",
+            "title": "Getting Started",
+            "description": "Tips for new PageFly users"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_id": "troubleshooting",
+            "title": "Troubleshooting",
+            "description": "Solutions to common issues"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_id": "optimization",
+            "title": "Optimization",
+            "description": "Tips for improving performance"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
+
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function() {
+  // Group tips by category
+  const tipsByCategory = {};
+  
+  {% for block in section.blocks %}
+    {% if block.type == 'tip' %}
+      if (!tipsByCategory['{{ block.settings.category_id }}']) {
+        tipsByCategory['{{ block.settings.category_id }}'] = [];
+      }
+      
+      tipsByCategory['{{ block.settings.category_id }}'].push({
+        title: {{ block.settings.title | json }},
+        content: {{ block.settings.content | json }},
+        image: {% if block.settings.image %}{{ block.settings.image | img_url: '600x' | json }}{% else %}null{% endif %},
+        videoUrl: {{ block.settings.video_url | json }}
+      });
+    {% endif %}
+  {% endfor %}
+  
+  // Render tips for each category
+  Object.keys(tipsByCategory).forEach(categoryId => {
+    const tipsContainer = document.querySelector(`#${categoryId}-tips .tips-accordion`);
+    if (!tipsContainer) return;
+    
+    tipsByCategory[categoryId].forEach(tip => {
+      const tipItem = document.createElement('div');
+      tipItem.className = 'tip-item';
+      
+      const tipHeader = document.createElement('div');
+      tipHeader.className = 'tip-header';
+      tipHeader.innerHTML = `
+        <h3>${tip.title}</h3>
+        <span class="accordion-icon">+</span>
+      `;
+      
+      const tipContent = document.createElement('div');
+      tipContent.className = 'tip-content';
+      
+      let tipContentHtml = `<div class="tip-body">${tip.content}</div>`;
+      
+      if (tip.image) {
+        tipContentHtml += `
+          <div class="tip-image">
+            <img src="${tip.image}" alt="${tip.title}">
+          </div>
+        `;
+      }
+      
+      if (tip.videoUrl) {
+        tipContentHtml += `
+          <div class="tip-video">
+            <iframe src="${tip.videoUrl}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        `;
+      }
+      
+      tipContent.innerHTML = tipContentHtml;
+      
+      tipItem.appendChild(tipHeader);
+      tipItem.appendChild(tipContent);
+      tipsContainer.appendChild(tipItem);
+      
+      // Add click event
+      tipHeader.addEventListener('click', function() {
+        const isActive = tipItem.classList.contains('active');
+        
+        // Close all tip items
+        document.querySelectorAll('.tip-item').forEach(item => {
+          item.classList.remove('active');
+          const content = item.querySelector('.tip-content');
+          content.style.maxHeight = null;
+          item.querySelector('.accordion-icon').textContent = '+';
+        });
+        
+        // If the clicked item wasn't active, open it
+        if (!isActive) {
+          tipItem.classList.add('active');
+          const content = tipItem.querySelector('.tip-content');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          tipItem.querySelector('.accordion-icon').textContent = '-';
+        }
+      });
+    });
+  });
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+{% endjavascript %}
+
