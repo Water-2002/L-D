@@ -32,7 +32,7 @@
               {% if block.settings.icon != blank %}
                 <img src="{{ block.settings.icon | img_url: '100x100' }}" alt="{{ block.settings.title }}">
               {% else %}
-                <span class="default-icon">{% render 'icon-' | append: block.settings.default_icon %}</span>
+                <span class="default-icon">{% render 'icon-', append: block.settings.default_icon %}</span>
               {% endif %}
             </div>
             <h3>{{ block.settings.title }}</h3>
@@ -396,3 +396,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 {% endjavascript %}
 
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-' | append: block.settings.default_icon %}"
+  to: "{% render 'icon-', append: block.settings.default_icon %}"
+  position: 1450..1507
+{% endcomment %}
